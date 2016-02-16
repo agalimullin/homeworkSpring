@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:annotation-config/>
+    <context:component-scan base-package="foo.bar"/>
+
+    <bean id="poem" class="foo.bar.Poem">
+        <constructor-arg name="textPoem" value="Старик, ты хочешь знать, что делал я на воле?"/>
+    </bean>
+
+
+    <bean id="vasya" class="foo.bar.Juggler">
+        <constructor-arg name="countOfBeanbags" value="15"/>
+        <constructor-arg name="poem" ref="poem"/>
+    </bean>
+
+</beans>
