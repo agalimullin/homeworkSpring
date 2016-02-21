@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:annotation-config/>
+    <context:component-scan base-package="foo.bar"/>
+
+    <bean id="songs1" class="foo.bar.etc.SongSelector">
+        <property name="songs">
+            <list>
+                <bean id="riot" class="foo.bar.etc.Song">
+                    <constructor-arg name="name" value="Riot"/>
+                    <constructor-arg name="text" value="Let's start a riot, a riot, Let's start a riot"/>
+                </bean>
+                <bean id="animal" class="foo.bar.etc.Song">
+                    <constructor-arg name="name" value="Animal I Have Become"/>
+                    <constructor-arg name="text"
+                                     value="So what if you can see the darkest side of me? No one would ever change this animal I have become"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="songs2" class="foo.bar.etc.SongSelector">
+        <property name="songs">
+            <list>
+                <bean id="sorry" class="foo.bar.etc.Song">
+                    <constructor-arg name="name" value="I'm So Sorry"/>
+                    <constructor-arg name="text"
+                                     value="You gotta face up, you gotta get yours, You never know the top till you get too low"/>
+                </bean>
+                <bean id="life" class="foo.bar.etc.Song">
+                    <constructor-arg name="name" value="I Bet My Life"/>
+                    <constructor-arg name="text"
+                                     value="Now remember when I told you that's the last you'll see of me? Remember when I broke you down to tears?"/>
+                </bean>
+                <bean id="summer" class="foo.bar.etc.Song">
+                    <constructor-arg name="name" value="Summer"/>
+                    <constructor-arg name="text" value="Show me all your colors, Show me all."/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="bandList" class="foo.bar.performers.MusicBandList">
+        <constructor-arg name="bands">
+            <list>
+                <bean class="foo.bar.performers.MusicBand">
+                    <property name="name" value="Three Days Grace"/>
+                    <property name="songs" value="#{songs1.songs}"/>
+                    <property name="members">
+                        <list>
+                            <bean class="foo.bar.performers.GuitaristAndVocalist"/>
+                            <bean class="foo.bar.performers.Bassist"/>
+                            <bean class="foo.bar.performers.Keyboardist"/>
+                        </list>
+                    </property>
+                </bean>
+                <bean class="foo.bar.performers.MusicBand">
+                    <property name="name" value="Imagine Dragons"/>
+                    <property name="songs" value="#{songs2.songs}"/>
+                    <property name="members">
+                        <list>
+                            <bean class="foo.bar.performers.Vocalist"/>
+                            <bean class="foo.bar.performers.Guitarist"/>
+                            <bean class="foo.bar.performers.Bassist"/>
+                            <bean class="foo.bar.performers.Drummer"/>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+</beans>
