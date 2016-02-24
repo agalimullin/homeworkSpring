@@ -1,10 +1,17 @@
 package foo.bar.performers;
 
-import foo.bar.instruments.Guitar;
+import foo.bar.instruments.Instrument;
 
-public class Guitarist extends Guitar implements Performer {
+public class Guitarist implements Performer {
+    Instrument instrument;
+
+    public void setInstrument(Instrument instrument) {
+        this.instrument = instrument;
+    }
+
     @Override
+
     public void perform() {
-        play();
+        instrument.play();
     }
 }

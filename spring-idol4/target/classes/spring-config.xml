@@ -44,6 +44,11 @@
         </property>
     </bean>
 
+    <bean id="bass" class="foo.bar.instruments.Bass"></bean>
+    <bean id="drums" class="foo.bar.instruments.Drums"></bean>
+    <bean id="guitar" class="foo.bar.instruments.Guitar"></bean>
+    <bean id="keyboard" class="foo.bar.instruments.Keyboard"></bean>
+
     <bean id="bandList" class="foo.bar.performers.MusicBandList">
         <constructor-arg name="bands">
             <list>
@@ -52,9 +57,9 @@
                     <property name="songs" value="#{songs1.songs}"/>
                     <property name="members">
                         <list>
-                            <bean class="foo.bar.performers.GuitaristAndVocalist"/>
-                            <bean class="foo.bar.performers.Bassist"/>
-                            <bean class="foo.bar.performers.Keyboardist"/>
+                            <bean class="foo.bar.performers.GuitaristAndVocalist" p:instrument-ref="guitar"/>
+                            <bean class="foo.bar.performers.Bassist" p:instrument-ref="bass"/>
+                            <bean class="foo.bar.performers.Keyboardist" p:instrument-ref="keyboard"/>
                         </list>
                     </property>
                 </bean>
@@ -64,9 +69,9 @@
                     <property name="members">
                         <list>
                             <bean class="foo.bar.performers.Vocalist"/>
-                            <bean class="foo.bar.performers.Guitarist"/>
-                            <bean class="foo.bar.performers.Bassist"/>
-                            <bean class="foo.bar.performers.Drummer"/>
+                            <bean class="foo.bar.performers.Guitarist" p:instrument-ref="guitar"/>
+                            <bean class="foo.bar.performers.Bassist" p:instrument-ref="bass"/>
+                            <bean class="foo.bar.performers.Drummer" p:instrument-ref="drums"/>
                         </list>
                     </property>
                 </bean>

@@ -2,13 +2,15 @@ package foo.bar.performers;
 
 import foo.bar.etc.Song;
 import foo.bar.instruments.Guitar;
+import foo.bar.instruments.Instrument;
 
-public class GuitaristAndVocalist extends Guitar implements Vocal, Performer {
+public class GuitaristAndVocalist implements Vocal, Performer {
+    Instrument instrument;
     Song song;
 
     @Override
     public void sing() {
-        System.out.println("Declaiming song - " + song.getName() + ": " + song.getText());
+        System.out.println("Declaiming song: " + song.getText());
     }
 
     @Override
@@ -18,7 +20,11 @@ public class GuitaristAndVocalist extends Guitar implements Vocal, Performer {
 
     @Override
     public void perform() {
-        play();
+        instrument.play();
         sing();
+    }
+
+    public void setInstrument(Instrument instrument) {
+        this.instrument = instrument;
     }
 }

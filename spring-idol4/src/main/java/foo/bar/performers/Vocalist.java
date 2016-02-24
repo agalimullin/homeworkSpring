@@ -7,11 +7,10 @@ public class Vocalist implements Vocal, Performer {
 
     @Override
     public void sing() {
-        System.out.println("Declaiming song - " + song.getName() + ": " + song.getText());
+        System.out.println("Declaiming song: " + song.getText());
     }
 
-    @Override
-    public void setSong(Song song){
+    public void setSong(Song song) {
         this.song = song;
     }
 
