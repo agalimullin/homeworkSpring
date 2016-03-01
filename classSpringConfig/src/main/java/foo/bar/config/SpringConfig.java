@@ -13,11 +13,6 @@ import java.util.ArrayList;
 
 @Configuration
 public class SpringConfig {
-    ArrayList <Song> listSongs1 = new ArrayList<>();
-    ArrayList <Song> listSongs2 = new ArrayList<>();
-    ArrayList <Performer> members1 = new ArrayList<>();
-    ArrayList <Performer> members2 = new ArrayList<>();
-    ArrayList <MusicBand> bands = new ArrayList<>();
 
     @Bean
     public Song riot() {
@@ -106,36 +101,41 @@ public class SpringConfig {
 
     @Bean
     public MusicBand band1(){
-        MusicBand band1 = new MusicBand();
-        listSongs1.add(riot());
-        listSongs1.add(animal());
-        band1.setSongs(listSongs1);
-        members1.add(gAndV());
-        members1.add(bassist());
-        members1.add(keyboardist());
-        band1.setMembers(members1);
-        band1.setName("Three Days Grace");
-        return band1;
+        ArrayList <Song> listSongs = new ArrayList<>();
+        ArrayList <Performer> members = new ArrayList<>();
+        MusicBand band = new MusicBand();
+        listSongs.add(riot());
+        listSongs.add(animal());
+        band.setSongs(listSongs);
+        members.add(gAndV());
+        members.add(bassist());
+        members.add(keyboardist());
+        band.setMembers(members);
+        band.setName("Three Days Grace");
+        return band;
     }
 
     @Bean
     public MusicBand band2(){
-        MusicBand band2 = new MusicBand();
-        listSongs2.add(sorry());
-        listSongs2.add(life());
-        listSongs2.add(summer());
-        band2.setSongs(listSongs2);
-        members2.add(vocalist());
-        members2.add(bassist());
-        members2.add(drummer());
-        members2.add(guitarist());
-        band2.setMembers(members2);
-        band2.setName("Imagine Dragons");
-        return band2;
+        ArrayList <Song> listSongs = new ArrayList<>();
+        ArrayList <Performer> members = new ArrayList<>();
+        MusicBand band = new MusicBand();
+        listSongs.add(sorry());
+        listSongs.add(life());
+        listSongs.add(summer());
+        band.setSongs(listSongs);
+        members.add(vocalist());
+        members.add(bassist());
+        members.add(drummer());
+        members.add(guitarist());
+        band.setMembers(members);
+        band.setName("Imagine Dragons");
+        return band;
     }
 
     @Bean
     public MusicBandList bandList() {
+        ArrayList <MusicBand> bands = new ArrayList<>();
         bands.add(band1());
         bands.add(band2());
         return new MusicBandList(bands);
