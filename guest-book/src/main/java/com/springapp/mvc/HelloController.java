@@ -4,6 +4,7 @@ import com.springapp.mvc.dao.UserDAO;
 import com.sun.xml.internal.bind.v2.runtime.Name;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,24 +20,28 @@ public class HelloController {
         return "home"; // view id
     }
 
-    @RequestMapping(value = "/helloVasya", method = RequestMethod.GET)
+    @RequestMapping(value = "/helloGuest", method = RequestMethod.GET)
     public String helloVasya(ModelMap model) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("hello.xml");
         UserDAO userDAO = (UserDAO) ctx.getBean("userDAO");
-        User vasya = userDAO.getUserById(1);
-        model.addAttribute("message", "Hello, " + vasya.getName());
-        return "helloVasya"; // view id
+        User user = userDAO.getUserById(userDAO.totalPersonsCount());
+        model.addAttribute("message", "Hello, " + user.getName());
+        return "helloGuest"; // view id
     }
 
     @RequestMapping(value = "/addNewUser", method = RequestMethod.GET)
-    public String addNewUser(String name) {
+    public String addNewUser() {
+        return "addNewUser";
+    }
+
+    @RequestMapping(value = "/submitValue", method = RequestMethod.GET)
+    public String submitValue(@RequestParam(value = "name") String name) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("hello.xml");
         UserDAO userDAO = (UserDAO) ctx.getBean("userDAO");
         User user = new User();
-        if (name != null) {
-            user.setName(name);
-            userDAO.addUser(user);
-        }
-        return "addNewUser";
+        user.setName(name);
+        user.setId(userDAO.totalPersonsCount() + 1);
+        userDAO.addUser(user);
+        return "redirect:helloGuest";
     }
 }

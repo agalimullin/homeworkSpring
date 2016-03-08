@@ -20,7 +20,7 @@
 
 <h1>Home</h1>
 
-<a href="/helloVasya">hello, vasya</a>
+<a href="/helloGuest">Hello, guest</a>
 <br>
 <a href="/addNewUser">I wanna add new user</a>
 

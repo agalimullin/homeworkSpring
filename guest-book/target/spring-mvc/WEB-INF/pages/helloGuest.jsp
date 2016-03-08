@@ -10,6 +10,7 @@
 <body>
 <div class="text">
 	<h1>${message}</h1>
+	<a href="/">Home</a>
 </div>
 </body>
 </html>

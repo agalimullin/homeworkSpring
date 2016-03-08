@@ -10,7 +10,8 @@
 </head>
 <body>
 <div class="text">
-<form action="${pageContext.request.contextPath}/addNewUser">
+    <h1>Add new user:</h1>
+<form action="${pageContext.request.contextPath}/submitValue">
     <input type="text" name="name">
     <input type="submit" value="Submit">
 </form>
